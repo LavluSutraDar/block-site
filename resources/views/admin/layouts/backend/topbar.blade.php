@@ -198,7 +198,7 @@
                               
                                 <form method="POST" action="{{route('admin.logout')}}">
                                 @csrf
-                                <button type="submit" class="btn btn-primary form-control">
+                                <button type="submit" class="logout btn btn-primary form-control">
                                     Log Out
                                 </button>
                                 </form>

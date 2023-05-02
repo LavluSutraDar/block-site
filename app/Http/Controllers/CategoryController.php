@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-    
+
         $category = Category::all();
         return view('admin.category.index', compact('category'));
         //dd($category);
@@ -42,11 +42,17 @@ class CategoryController extends Controller
             'name' => $request->name,
             'description' => $request->description,
         );
-        
 
-         Category::insert($data);
-         //DB::table('categories')->insert($data);
-         return back()->with('sucess', 'SucessFully Inserted');
+
+        Category::insert($data);
+        //DB::table('categories')->insert($data);
+
+        $notifacation = [
+            'message' => 'Category Created Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return back()->with($notifacation);
 
         //MODEL R MADDOME INSERT
         // subcategory::insert([
@@ -55,6 +61,8 @@ class CategoryController extends Controller
         //     'subcategory_name' => $request->subcategoryname,
 
         // ]);
+
+       
     }
 
     /**
@@ -80,27 +88,31 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         $cat_update = Category::find($id);
-        
+
         $validated = $request->validate([
             'editname' => 'required|unique:categories,name,' . $cat_update->id . '|max:255',
             'editdescription' => 'required',
         ]);
 
-        
+
 
         $cat_update->update([
-            'name'=>$request->editname,
+            'name' => $request->editname,
             'description' => $request->editdescription,
         ]);
-        return redirect()->route('category.index');
 
-        
+        $notifacation = [
+            'message' => 'Category Update Successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('category.index')->with($notifacation);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request ,string $id)
+    public function destroy(Request $request, string $id)
     {
         DB::table('categories')->where('id', $id)->delete();
         return Redirect()->back();

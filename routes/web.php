@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,9 @@ Route::group(['middleware' => 'admin'], function () {
 
     // CATEGORY ROUTE
     Route::resource('/admin/category', CategoryController::class);
+
+    // POST ROUTE
+    Route::resource('/admin/post', PostController::class);
 });
 
 

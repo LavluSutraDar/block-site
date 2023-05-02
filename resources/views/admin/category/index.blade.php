@@ -44,14 +44,14 @@
                                     <form action="{{ route('category.destroy', $cat->id) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="_method" value="Delete">
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="delete btn btn-danger">
                                             Delete
                                         </button>
                                     </form>
                                 </td>
 
                                 <td>
-                                    {{-- <a class="btn btn-info" href="{{ route('category.edit', $cat->id) }}">Edit</a> --}}
+                                   
                                     <button type="submit" data-toggle="modal" data-target="{{'#edit'.$cat->id.'categoryModal'}}"
                                         class="btn btn-info">Edit</button>
                                 </td>

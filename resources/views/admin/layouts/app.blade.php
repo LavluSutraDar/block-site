@@ -70,8 +70,6 @@
                                 echo $page;
                             @endphp
                         </h1>
-
-
                     </div>
 
                     <!-- Content Row -->

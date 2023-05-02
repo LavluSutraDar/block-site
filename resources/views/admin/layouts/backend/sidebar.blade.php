@@ -13,7 +13,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item @if ($page == 'Dashboard') active @endif">
+
         <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Apurva Admin Dashboard</span></a>
@@ -28,11 +29,23 @@
     </div>
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    <li class="nav-item  @if ($page == 'Categories')active @endif">
+
         <a class="nav-link" href="{{route('category.index')}}">
             <i class="fas fa-fw fa-table"></i>
-            <span>Category Tables</span></a>
+            <span>Category Table</span>
+        </a>
     </li>
+
+     <li class="nav-item">
+
+        <a class="nav-link" href="{{route('post.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Post Table</span>
+        </a>
+    </li>
+
+  
 
     <!-- Divider -->
     <hr class="sidebar-divider">
