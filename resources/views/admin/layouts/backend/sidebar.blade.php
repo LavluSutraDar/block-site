@@ -37,7 +37,7 @@
         </a>
     </li>
 
-     <li class="nav-item">
+     <li class="nav-item @if ($page == 'post')active @endif">
 
         <a class="nav-link" href="{{route('post.index')}}">
             <i class="fas fa-fw fa-table"></i>
