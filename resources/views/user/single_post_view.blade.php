@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('mainsection')
-    @include('layouts.frontend.banner')
     <div class="py-4"></div>
     <section class="section">
         <div class="container">
@@ -9,26 +8,26 @@
                 <div class=" col-lg-9   mb-5 mb-lg-0">
                     <article>
                         <div class="post-slider mb-4">
-                            <img src="{{asset('backend/post_thumbnail/' . $post->thumbnail)}}" class="card-img" alt="post-thumb">
+                            <img src="{{ asset('backend/post_thumbnail/' . $post->thumbnail) }}" class="card-img"
+                                alt="post-thumb">
                         </div>
 
-                        <h1 class="h2">{{$post->title}}</h1>
-                        <ul class="card-meta my-3 list-inline">
-                               <li class="list-inline-item">
-                                        <i class="ti-calendar"></i>
-                                        {{date('d M Y', strtotime($post->created_at))}}
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <ul class="card-meta-tag list-inline">
-                                         Category :  <b class="text-danger">{{$post->category_name}}</b>
-                                        </ul>
-                                    </li>
-                           
-                         
+                        <h1 class="h2">{{ $post->title }}</h1>
+
+                        <ul class="card-meta list-inline">
+                            <li class="list-inline-item">
+                                <i class="ti-calendar text-dark">
+                                    {{ date('d M Y', strtotime($post->created_at)) }}
+                                </i>
+                            </li>
+                            <li class="list-inline-item">
+                                <ul class="card-meta-tag list-inline">
+                                    Category : <b class="text-danger">{{ $post->category_name }}</b>
+                                </ul>
+                            </li>
                         </ul>
                         <div class="content">
-                            <p>{{$post->description}}</p>
-                            
+                            <p>{{ $post->description }}</p>
                         </div>
                     </article>
 
@@ -40,7 +39,7 @@
 
                         <div class="media d-block d-sm-flex mb-4 pb-4">
                             <a class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
-                                <img src="{{asset('frontend/images/post/user-01.jpg')}}" class="mr-3 rounded-circle" alt="">
+                                <img src="images/post/user-01.jpg" class="mr-3 rounded-circle" alt="">
                             </a>
                             <div class="media-body">
                                 <a href="#!" class="h4 d-inline-block mb-3">Alexender Grahambel</a>
@@ -56,8 +55,8 @@
                         </div>
                         <div class="media d-block d-sm-flex">
                             <div class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
-                                <img class="mr-3" src="{{asset('frontend/images/post/arrow.png')}}" alt="">
-                                <a href="#!"><img src="{{asset('frontend/images/post/user-02.jpg')}}" class="mr-3 rounded-circle"
+                                <img class="mr-3" src="images/post/arrow.png" alt="">
+                                <a href="#!"><img src="images/post/user-02.jpg" class="mr-3 rounded-circle"
                                         alt=""></a>
                             </div>
                             <div class="media-body">

@@ -13,10 +13,10 @@ class Category extends Model
         'name', 'description'
     ];
 
-    public function post()
-    {
-        return $this->hasOne(Post::class);
-    }
+    // public function post()
+    // {
+    //     return $this->hasOne(Post::class);
+    // }
 
     // public function setcategorynameattribute($post)
     // {

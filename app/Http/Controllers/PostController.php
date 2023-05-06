@@ -20,7 +20,8 @@ class PostController extends Controller
         $data = Category::all();
         $objpost = new Post();
 
-        $post = $objpost->join('categories', 'categories.id', '=', 'posts.category_id')
+        $post = $objpost
+        ->join('categories', 'categories.id', '=', 'posts.category_id')
         ->select('posts.*', 'categories.name as category_name')->get();
         
 
