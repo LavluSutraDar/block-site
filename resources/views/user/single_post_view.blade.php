@@ -25,18 +25,17 @@
                                     Category : <b class="text-danger">{{ $post->category_name }}</b>
                                 </ul>
                             </li>
+                            <li class="list-inline-item">
+                                <ul class="card-meta-tag list-inline">
+                                    <p>
+                                        @php
+                                            echo $post->description;
+                                        @endphp
+                                    </p>
+                                </ul>
+                            </li>
                         </ul>
                         <div class="content">
-                            <p>{{ $post->description }}</p>
-                        </div>
-                    </article>
-
-                </div>
-
-                <div class="col-lg-9 col-md-12">
-                    <div class="mb-5 border-top mt-4 pt-5">
-                        <h3 class="mb-4">Comments</h3>
-
                         <div class="media d-block d-sm-flex mb-4 pb-4">
                             <a class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
                                 <img src="images/post/user-01.jpg" class="mr-3 rounded-circle" alt="">

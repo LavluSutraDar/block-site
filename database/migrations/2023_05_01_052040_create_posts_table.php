@@ -18,6 +18,7 @@ return new class extends Migration
              //$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
             $table->string('title');
+            $table->string('subtitle')->nullable();
             $table->text('description');
             $table->string('thumbnail')->nullable();
             $table->string('status')->nullable();

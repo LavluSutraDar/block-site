@@ -25,29 +25,7 @@
                             aria-expanded="false">Pages <i class="ti-angle-down ml-1"></i>
                         </a>
                         <div class="dropdown-menu">
-
                             <a class="dropdown-item" href="author.html">Author</a>
-
-                            <a class="dropdown-item" href="author-single.html">Author Single</a>
-
-                            <a class="dropdown-item" href="advertise.html">Advertise</a>
-
-                            <a class="dropdown-item" href="post-details.html">Post Details</a>
-
-                            <a class="dropdown-item" href="post-elements.html">Post Elements</a>
-
-                            <a class="dropdown-item" href="tags.html">Tags</a>
-
-                            <a class="dropdown-item" href="search-result.html">Search Result</a>
-
-                            <a class="dropdown-item" href="search-not-found.html">Search Not Found</a>
-
-                            <a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a>
-
-                            <a class="dropdown-item" href="terms-conditions.html">Terms Conditions</a>
-
-                            <a class="dropdown-item" href="404.html">404 Page</a>
-
                         </div>
                     </li>
 
@@ -61,15 +39,38 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">Acount <i class="ti-angle-down ml-1"></i>
+                            aria-expanded="false">
+                           <p>{{auth()->User()->name}}</p>
+                            @auth
+                                @if (auth()->User()->image)
+                                 
+                                    <img class="rounded-circle" style="height: 30px"
+                                        src="{{ asset('backend/user_image/' . auth()->User()->image) }}">
+                                @else
+                                    <img class="rounded-circle" style="height: 30px"
+                                        src="{{ asset('backend/user_image/user.jpg') }}">
+                                @endif
+
+                             @else
+                                  <img class="rounded-circle" style="height: 30px"
+                                    src="{{ asset('backend/user_image/user.jpg') }}">
+                            @endauth
+
                         </a>
+
+
                         <div class="dropdown-menu">
                             @auth
-                            <a class="dropdown-item" href="">Profile</a>
-                            <a class="dropdown-item" href="">Logout</a>
-                                @else
-                                <a class="dropdown-item" href="{{route('login')}}">Login</a>
-                                <a class="dropdown-item" href="{{route('logout')}}">Register</a>
+                                <a class="dropdown-item" href=""></a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="dropdown-item" type="submit">Logout</button>
+
+                                </form>
+                            @else
+                                <a class="dropdown-item" href="{{ route('login') }}">Login</a>
+                                <a class="dropdown-item" href="{{ route('register') }}">Register</a>
+
                             @endauth
 
                         </div>

@@ -24,6 +24,7 @@
                             <th>I-D</th>
                             <th>Category-Id</th>
                             <th>Title</th>
+                            <th>Subtitle</th>
                             <th>Description</th>
                             <th>Thumbnail</th>
                             <th>Status</th>
@@ -39,7 +40,12 @@
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $postdata->category_name }}</td>
                                 <td>{{ $postdata->title }}</td>
-                                <td>{{ $postdata->description }}</td>
+                                <td>{{ $postdata->subtitle }}</td>
+                                <td>
+                                    @php
+                                        echo $postdata->description
+                                    @endphp
+                                </td>
                                 <td>
                                     <img src="{{ asset('backend/post_thumbnail/' . $postdata->thumbnail) }}" alt=""
                                         style="width: 100px">
@@ -71,7 +77,7 @@
 
                             <div class="modal fade" id="{{ 'edit' . $postdata->id . 'postModal' }}" tabindex="-1"
                                 role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -111,12 +117,12 @@
                                                         </span>
                                                     @enderror
                                                 </div>
-
+                                          
                                                 <div class="mb-3">
                                                     <label for="exampleInputPassword1" class="form-label"> Category Edit
                                                         Discription</label>
 
-                                                    <textarea class="form-control @error('edit_post_description') is-invalid @enderror" name="edit_post_description"
+                                                    <textarea class="summernote form-control @error('edit_post_description') is-invalid @enderror" name="edit_post_description"
                                                         rows="5">
                                                         {{ $postdata->description }}
                                                        
@@ -178,10 +184,10 @@
         </div>
     </div>
 
-    <!-- Category Add Modal-->
+    <!-- Post Add Modal-->
     <div class="modal fade" id="addpostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Post</h5>
@@ -216,10 +222,23 @@
                             @enderror
                         </div>
 
+                         <div class="mb-3">
+                            <label for="" class="form-label">SubTitle</label>
+                            <input type="text" name="subtitle"
+                                class="form-control @error('subtitle') is-invalid @enderror"
+                                value="{{ old('subtitle') }}">
+
+                            @error('subtitle')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                         <div class="mb-3">
                             <label for="" class="form-label"> post Discription</label>
 
-                            <textarea class="form-control @error('postdescription') is-invalid @enderror" name="postdescription" rows="5"
+                            <textarea class="summernote form-control @error('postdescription') is-invalid @enderror" name="postdescription" rows="5"
                                 value="{{ old('postdescription') }}">
                             </textarea>
                             @error('postdescription')

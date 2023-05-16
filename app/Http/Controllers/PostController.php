@@ -7,8 +7,9 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
-
+use Intervention\Image\Facades\Image;
 use function Pest\Laravel\post;
+
 
 class PostController extends Controller
 {
@@ -47,6 +48,8 @@ class PostController extends Controller
             'posttitle' => 'required',
             'postdescription' => 'required',
             'thumbnail'=> 'required',
+            'subtitle' => 'required',
+
         ]);
 
         $data = array(
@@ -54,14 +57,21 @@ class PostController extends Controller
             'title' => $request->posttitle,
             'description' => $request->postdescription,
             'status' => $request->status,
+            'subtitle'=>$request->subtitle,
         );
 
         if ($request->hasFile('thumbnail')) {
             $file = $request->file('thumbnail');
             $extension = $file->getClientOriginalExtension();
-            $thumbnail_name = time()  . '.' . $extension;
-            $file->move(public_path('backend/post_thumbnail/'), $thumbnail_name);
-            $data['thumbnail'] = $thumbnail_name;
+
+             $thumbnail_name = time()  . '.' . $extension;
+             $thumbnail = Image::make($file);
+             
+             //RESIZE IMAGE
+             $thumbnail->resize(600,360)->save(public_path('backend/post_thumbnail/') . $thumbnail_name);
+            
+
+             $data['thumbnail'] = $thumbnail_name;
         }
         Post::create($data);
 
@@ -120,7 +130,10 @@ class PostController extends Controller
             $file = $request->file('thumbnail');
             $extension = $file->getClientOriginalExtension();
             $thumbnail_name = time()  . '.' . $extension;
-            $file->move(public_path('backend/post_thumbnail/'), $thumbnail_name);
+            $thumbnail = Image::make($file);
+
+             //RESIZE IMAGE
+            $thumbnail->resize(600, 360)->save(public_path('backend/post_thumbnail/') . $thumbnail_name);
             $data['thumbnail'] = $thumbnail_name;
         }
 

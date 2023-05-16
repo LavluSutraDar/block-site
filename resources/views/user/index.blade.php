@@ -2,8 +2,6 @@
 
 @section('mainsection')
     @include('layouts.frontend.banner')
-    @include('layouts.frontend.trending')
-
     <section class="section-sm">
         <div class="container">
             <div class="row justify-content-center">
