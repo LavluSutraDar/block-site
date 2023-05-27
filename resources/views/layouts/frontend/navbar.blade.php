@@ -30,7 +30,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="shop.html">Question & Ans</a>
+                        <a class="nav-link" href="{{route('quation_ans')}}">Question & Ans</a>
                     </li>
                 </ul>
             </div>
@@ -40,7 +40,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false">
-                           <p>{{auth()->User()->name}}</p>
+                           {{-- <p>{{auth()->User()->name}}</p> --}}
                             @auth
                                 @if (auth()->User()->image)
                                  
@@ -64,7 +64,7 @@
                                 <a class="dropdown-item" href=""></a>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button class="dropdown-item" type="submit">Logout</button>
+                                    <button class=" logout dropdown-item" type="submit">Logout</button>
 
                                 </form>
                             @else

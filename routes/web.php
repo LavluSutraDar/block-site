@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AnswerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,25 @@ Route::get('/post/{id}', [UserController::class, 'single_post_view'])->name('sin
 
  Route::get('/post/category/{category_id}', [UserController::class, 'filter_by_category'])->name('filter_by_category');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+  Route::group(['middleware' => 'auth'], function () {
+
+    Route::post('/post/comment/{comment_id}', [UserController::class, 'post_comment'])->name('post_comment');
+
+    //quation start
+    Route::get('/quation', [UserController::class , 'quation_ans'])->name('quation_ans');
+    Route::post('/quation/store', [UserController::class, 'quation_store'])->name('quation_store');
+    Route::delete('/quation/distroy/{id}', [UserController::class, 'quation_distroy'])
+    ->name('quation_distroy');
+
+    //ANSWER SECTION 
+    Route::get('questions/answers/{id}', [AnswerController::class, 'answer'])->name('answer');
+    Route::get('answers/store/{id}', [AnswerController::class, 'answer_store'])->name('answer_store');
+
+ });
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
