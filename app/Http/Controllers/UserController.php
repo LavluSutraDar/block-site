@@ -23,7 +23,7 @@ class UserController extends Controller
             ->select('posts.*', 'categories.name as category_name')
             ->where('posts.status', 1)
             ->orderby('posts.id', 'desc')
-            ->get();
+            ->paginate(3);
         $categories = Category::all();
         return view('user.index', compact('posts', 'categories'));
     }
@@ -62,7 +62,15 @@ class UserController extends Controller
             ->orderby('posts.id', 'desc')
             ->get();
 
-        return view('user.filter_by_category', compact('posts'));
+        $filter_posts = $postjoin
+            ->join('categories', 'categories.id', '=', 'posts.category_id')
+            ->select('posts.*', 'categories.name as category_name')
+            ->where('posts.status', 1)
+            ->orderby('posts.id', 'desc')
+            ->paginate(3);
+        $categories = Category::all();
+
+        return view('user.filter_by_category', compact('posts', 'categories', 'filter_posts'));
     }
 
     // COMMENT SECTION
@@ -89,6 +97,8 @@ class UserController extends Controller
     public function quation_ans()
     {
         $quationobj = new Question();
+        $postjoin = new Post();
+
         $questions = $quationobj
             ->join('categories', 'categories.id', '=', 'questions.category_id')
             ->join('users', 'users.id', '=', 'questions.user_id')
@@ -96,9 +106,15 @@ class UserController extends Controller
             ->orderby('questions.id', 'desc')
             ->paginate(2);
 
+        $posts = $postjoin
+            ->join('categories', 'categories.id', '=', 'posts.category_id')
+            ->select('posts.*', 'categories.name as category_name')
+            ->where('posts.status', 1)
+            ->orderby('posts.id', 'desc')
+            ->paginate(3);
 
         $categories = Category::all();
-        return view('user.question', compact('categories', 'questions'));
+        return view('user.question', compact('categories', 'questions', 'posts'));
     }
 
     public function quation_store(Request $request)

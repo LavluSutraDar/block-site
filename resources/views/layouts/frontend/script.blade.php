@@ -50,7 +50,7 @@
          var form = $(this).closest("form");
          event.preventDefault();
          Swal.fire({
-             title: 'Do you want to delete this row?',
+             title: 'Do you want to delete this?',
              text: "Once deleted, you will not be able to recover this!",
              icon: 'warning',
              showCancelButton: true,

@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
   <title>
-     @yield('title')
+     @yield('title') Coding With Apurva
   </title>
 
   <!-- mobile responsive meta -->

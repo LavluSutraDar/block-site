@@ -11,7 +11,7 @@
 
     <!-- about me -->
     <div class="widget widget-about">
-        <h4 class="widget-title">Hi, I am Alex!</h4>
+        <h4 class="widget-title">Hi, I am Apurva!</h4>
         <img class="img-fluid" src="{{ asset('frontend/images/277005588_159777943116987_1894304156555662423_n.jpg') }}" alt="Themefisher">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel in in donec iaculis tempus odio
             nunc laoreet . Libero ullamcorper.</p>
@@ -35,50 +35,24 @@
         <h4 class="widget-title">Recent Post</h4>
 
         <!-- post-item -->
-        <article class="widget-card">
+        @foreach ($posts as $post)
+            <article class="widget-card">
             <div class="d-flex">
-                <img class="card-img-sm" src="{{ asset('frontend/images/post/post-10.jpg') }}">
+                <img class="card-img-sm" src="{{ asset('backend/post_thumbnail/'.$post->thumbnail) }}">
                 <div class="ml-3">
-                    <h5><a class="post-title" href="post/elements/">Elements That You Can Use In This
-                            Template.</a></h5>
+                    <h5><a class="post-title" href="{{route('single_post_view', $post->id)}}">
+                        {{$post->title}}
+                    </a></h5>
                     <ul class="card-meta list-inline mb-0">
                         <li class="list-inline-item mb-0">
-                            <i class="ti-calendar"></i>15 jan, 2020
+                            <i class="ti-calendar"></i>{{$post->created_at->format('d M Y')}}
                         </li>
                     </ul>
                 </div>
             </div>
         </article>
-
-        <article class="widget-card">
-            <div class="d-flex">
-                <img class="card-img-sm" src="{{ asset('frontend/images/post/post-3.jpg') }}">
-                <div class="ml-3">
-                    <h5><a class="post-title" href="post-details.html">Advice From a Twenty
-                            Something</a></h5>
-                    <ul class="card-meta list-inline mb-0">
-                        <li class="list-inline-item mb-0">
-                            <i class="ti-calendar"></i>14 jan, 2020
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </article>
-
-        <article class="widget-card">
-            <div class="d-flex">
-                <img class="card-img-sm" src="{{ asset('frontend/images/post/post-7.jpg') }}">
-                <div class="ml-3">
-                    <h5><a class="post-title" href="post-details.html">Advice From a Twenty
-                            Something</a></h5>
-                    <ul class="card-meta list-inline mb-0">
-                        <li class="list-inline-item mb-0">
-                            <i class="ti-calendar"></i>14 jan, 2020
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </article>
+        @endforeach
+        
     </div>
 
 
@@ -86,25 +60,16 @@
     <div class="widget widget-categories">
         <h4 class="widget-title"><span>Categories</span></h4>
         <ul class="list-unstyled widget-list">
-            <li><a href="tags.html" class="d-flex">Creativity <small class="ml-auto">(4)</small></a>
+            @foreach ($categories as $category)
+
+            @php
+              $post_count =DB::table('posts')->where('category_id', $category->id)->count();
+            @endphp
+                <li><a href="{{route('filter_by_category', $category->id)}}" class="d-flex">{{$category->name}}<small class="ml-auto">({{$post_count}})</small></a>
             </li>
-            <li><a href="tags.html" class="d-flex">Demo <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Elements <small class="ml-auto">(1)</small></a>
-            </li>
-            <li><a href="tags.html" class="d-flex">Food <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Microwave <small class="ml-auto">(1)</small></a>
-            </li>
-            <li><a href="tags.html" class="d-flex">Natural <small class="ml-auto">(3)</small></a>
-            </li>
-            <li><a href="tags.html" class="d-flex">Newyork city <small class="ml-auto">(1)</small></a>
-            </li>
-            <li><a href="tags.html" class="d-flex">Nice <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Tech <small class="ml-auto">(2)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Videography <small class="ml-auto">(1)</small></a>
-            </li>
-            <li><a href="tags.html" class="d-flex">Vlog <small class="ml-auto">(1)</small></a></li>
-            <li><a href="tags.html" class="d-flex">Wondarland <small class="ml-auto">(1)</small></a>
-            </li>
+            @endforeach
+            
+
         </ul>
     </div>
     <!-- tags -->

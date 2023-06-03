@@ -23,7 +23,9 @@ class PostController extends Controller
 
         $post = $objpost
         ->join('categories', 'categories.id', '=', 'posts.category_id')
-        ->select('posts.*', 'categories.name as category_name')->get();
+        ->select('posts.*', 'categories.name as category_name')
+        ->orderby('posts.id', 'desc')
+        ->get();
         
 
         //$data = DB::table('categories')->get();
@@ -45,8 +47,8 @@ class PostController extends Controller
     {
 
         $validated = $request->validate([
-            'posttitle' => 'required',
-            'postdescription' => 'required',
+            'title' => 'required',
+            'description' => 'required',
             'thumbnail'=> 'required',
             'subtitle' => 'required',
 
@@ -106,8 +108,8 @@ class PostController extends Controller
         
         $validated = $request->validate([
             'category_id' => 'required',
-            'edit_post_title' => 'required',
-            'edit_post_description' => 'required',
+            'title' => 'required',
+            'description' => 'required',
             'thumbnail' => 'required',
             
         ]);

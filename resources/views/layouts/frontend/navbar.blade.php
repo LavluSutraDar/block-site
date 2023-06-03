@@ -12,12 +12,12 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">About</a>
+                        <a class="nav-link" href="{{route('about')}}">About</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="{{route('contuct')}}">Contact</a>
                     </li>
 
                     <li class="nav-item dropdown">

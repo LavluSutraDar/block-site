@@ -45,6 +45,14 @@
         </a>
     </li>
 
+     <li class="nav-item @if ($page == 'message')active @endif">
+
+        <a class="nav-link" href="{{route('messages.index')}}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Contuct Messages</span>
+        </a>
+    </li>
+
   
 
     <!-- Divider -->

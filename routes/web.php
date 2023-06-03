@@ -8,6 +8,12 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\ContuctController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Models\ContuctMessage;
+use Illuminate\Mail\Mailables\Content;
+use Symfony\Component\Translation\MessageCatalogue;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,7 +45,25 @@ Route::get('/post/{id}', [UserController::class, 'single_post_view'])->name('sin
 
     //ANSWER SECTION 
     Route::get('questions/answers/{id}', [AnswerController::class, 'answer'])->name('answer');
-    Route::get('answers/store/{id}', [AnswerController::class, 'answer_store'])->name('answer_store');
+    Route::post('answers/store/{id}', [AnswerController::class, 'answer_store'])->name('answer_store');
+
+    Route::delete('/answers/distroy/{id}', [AnswerController::class, 'answers_distroy'])
+    ->name('answers_distroy');
+
+    Route::get('/quations/answers/like/{id}', [AnswerController::class, 'quation_answers_like'])
+    ->name('quation_answers_like');
+
+    Route::get('/quations/answers/unlike/{id}', [AnswerController::class, 'quation_answers_unlike'])
+    ->name('quation_answers_unlike');
+
+    //CONTUCT ECTION 
+    Route::get('/contuct', [ContuctController::class, 'contuct'])->name('contuct');
+
+    Route::post('/contuct/message', [ContuctController::class, 'contuct_message'])->name('contuct_message');
+
+    //ABOUT SECTION
+
+    Route::get('/about', [AboutController::class, 'about'])->name('about');
 
  });
 
@@ -82,6 +106,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     // POST ROUTE
     Route::resource('/admin/post', PostController::class);
+
+    Route::resource('/admin/contuct/messages', MessageController::class);
 });
 
 

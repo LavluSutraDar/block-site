@@ -42,13 +42,15 @@
 
                                     <a class="d-inline-block mr-2 mb-3 mb-md-0" href="#">
                                         @if ($comment->user_image)
-                                        <img src="{{asset('backend/user_image/'.$comment->user_image)}}" class="mr-3 rounded-circle" alt="" style="height:50px">
+                                            <img src="{{ asset('backend/user_image/' . $comment->user_image) }}"
+                                                class="mr-3 rounded-circle" alt="" style="height:50px">
                                         @else
-                                            <img src="{{asset('backend/user_image/user.jpg')}}" class="mr-3 rounded-circle" alt="" style="height:50px">
+                                            <img src="{{ asset('backend/user_image/user.jpg') }}"
+                                                class="mr-3 rounded-circle" alt="" style="height:50px">
                                         @endif
                                     </a>
                                     <div class="media-body">
-                                        <a href="#!" class="h4 d-inline-block mb-3">{{$comment->user_name}}</a>
+                                        <a href="#!" class="h4 d-inline-block mb-3">{{ $comment->user_name }}</a>
 
                                         <p>
                                             {{-- {{$comment->comment}} --}}
@@ -57,13 +59,17 @@
                                             @endphp
                                         </p>
 
-                                    <span class="text-black-800 mr-3 font-weight-600">{{ date('d M Y', strtotime($comment->created_at)) }}</span>
+                                        <span
+                                            class="text-black-800 mr-3 font-weight-600">{{ date('d M Y', strtotime($comment->created_at)) }}</span>
 
                                     </div>
                                 </div>
                             @endforeach
 
-                            {{$comments->links('pagination::bootstrap-4')}}
+
+                            <div class="mt-5">
+                                {{ $comments->links('pagination::bootstrap-5') }}
+                            </div>
 
                         </div>
 

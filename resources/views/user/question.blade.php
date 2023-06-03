@@ -55,8 +55,14 @@
                                         <i class="ti-bookmark">
                                         </i>{{ $question->category_name }}
                                     </li>
+
                                     <li class="list-inline-item text-primary">
-                                        <i class="ti-comment"></i>5 answers
+                                        <i class="ti-comment"></i>
+                                         @php
+                                           $number = DB::table('answers')
+                                           ->where('question_id',$question->id)->get();
+                                            echo count($number);
+                                        @endphp
                                     </li>
                                 </ul>
 

@@ -90,8 +90,8 @@ class CategoryController extends Controller
         $cat_update = Category::find($id);
 
         $validated = $request->validate([
-            'editname' => 'required|unique:categories,name,' . $cat_update->id . '|max:255',
-            'editdescription' => 'required',
+            'name' => 'required|unique:categories,name,' . $cat_update->id . '|max:255',
+            'description' => 'required',
         ]);
 
 
